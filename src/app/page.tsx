@@ -2,69 +2,77 @@
 
 import PageTitle from "@/components/PageTitle";
 import Image from "next/image";
-import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
+import { DollarSign, Users, CreditCard, Activity, ArrowUp, ArrowLeftRight, ArrowDown } from "lucide-react";
 import Card, { CardContent, CardProps } from "@/components/Card";
-import BarChart from "@/components/BarChart";
+import BarChart from "@/components/LineChart";
+import {Button} from "@/components/ui/button";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
+import {CreateNew} from "@/components/CreateNew";
 
 const cardData: CardProps[] = [
   {
-    label: "Total Revenue",
+    label: "Current Balance",
     amount: "$45,231.89",
     discription: "+20.1% from last month",
     icon: DollarSign
   },
   {
-    label: "Subscriptions",
-    amount: "+2350",
-    discription: "+180.1% from last month",
+    label: "Active strategies",
+    amount: "12",
+    discription: "across 5 assets",
     icon: Users
   },
   {
-    label: "Sales",
-    amount: "+12,234",
-    discription: "+19% from last month",
+    label: "Pending claims",
+    amount: "$1,415.26",
+    discription: "4 closed strategies",
     icon: CreditCard
   },
   {
-    label: "Active Now",
-    amount: "+573",
-    discription: "+201 since last hour",
+    label: "All time profit",
+    amount: "$573",
+    discription: "+$201 since last month",
     icon: Activity
   }
 ];
 
 const uesrSalesData: SalesProps[] = [
   {
-    name: "Olivia Martin",
-    email: "olivia.martin@email.com",
-    saleAmount: "+$1,999.00"
+    name: "Deposited 15 $OP",
+    email: "strategy: basic (15%)",
+    saleAmount: "+$1,999.00",
+    icon: ArrowDown
   },
   {
-    name: "Jackson Lee",
-    email: "isabella.nguyen@email.com",
-    saleAmount: "+$1,999.00"
+    name: "Sold 12.4 $ARB at price $2.41",
+    email: "strategy: basic (15%)",
+    saleAmount: "claim",
+    icon: ArrowLeftRight
   },
   {
-    name: "Isabella Nguyen",
-    email: "isabella.nguyen@email.com",
-    saleAmount: "+$39.00"
+    name: "Withdrew 0.5 ETH",
+    email: "strategy : basic (15%)",
+    saleAmount: "-$39.00",
+    icon: ArrowUp
   },
   {
-    name: "William Kim",
-    email: "will@email.com",
-    saleAmount: "+$299.00"
+    name: "Sold 12.4 $ARB at price $2.41",
+    email: "strategy: basic (15%)",
+    saleAmount: "claim",
+    icon: ArrowLeftRight
   },
   {
-    name: "Sofia Davis",
-    email: "sofia.davis@email.com",
-    saleAmount: "+$39.00"
-  }
+    name: "Withdrew 0.5 ETH",
+    email: "strategy : basic (15%)",
+    saleAmount: "-$39.00",
+    icon: ArrowUp
+  },
+  
 ];
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-5  w-full">
+    <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Dashboard" />
       <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
         {cardData.map((d, i) => (
@@ -79,15 +87,17 @@ export default function Home() {
       </section>
       <section className="grid grid-cols-1  gap-4 transition-all lg:grid-cols-2">
         <CardContent>
-          <p className="p-4 font-semibold">Overview</p>
-
+          <div className="flex justify-between items-center">
+            <p className="p-4 font-semibold text-2xl">Overview</p>
+            <CreateNew />
+          </div>
           <BarChart />
         </CardContent>
         <CardContent className="flex justify-between gap-4">
           <section>
-            <p>Recent Sales</p>
+            <p>Transaction history</p>
             <p className="text-sm text-gray-400">
-              You made 265 sales this month.
+              You made 5 transactions this month.
             </p>
           </section>
           {uesrSalesData.map((d, i) => (
@@ -96,6 +106,7 @@ export default function Home() {
               email={d.email}
               name={d.name}
               saleAmount={d.saleAmount}
+              icon={d.icon}
             />
           ))}
         </CardContent>

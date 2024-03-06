@@ -15,7 +15,11 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 
-import { useWindowWidth } from "@react-hook/window-size";
+// import { useWindowWidth } from "@react-hook/window-size";
+let useWindowWidth: any;
+if (typeof window !== "undefined") {
+  useWindowWidth = require("@react-hook/window-size").useWindowWidth;
+}
 
 export default function SideNavbar({}: Props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -28,7 +32,7 @@ export default function SideNavbar({}: Props) {
   }
 
   return (
-    <div className="relative min-w-[80px] border-r px-3  pb-10 pt-24 ">
+    <div className="relative min-w-[80px] border-r px-3  pb-10 pt-24 bg-nav">
       {!mobileWidth && (
         <div className="absolute right-[-20px] top-7">
           <Button
@@ -42,6 +46,7 @@ export default function SideNavbar({}: Props) {
       )}
       <Nav
         isCollapsed={mobileWidth ? true : isCollapsed}
+        
         links={[
           {
             title: "Dashboard",
@@ -49,20 +54,21 @@ export default function SideNavbar({}: Props) {
             icon: LayoutDashboard,
             variant: "default"
           },
+          
           {
-            title: "Users",
-            href: "/users",
-            icon: UsersRound,
-            variant: "ghost"
-          },
-          {
-            title: "Ordrs",
-            href: "/orders",
+            title: "Manage",
+            href: "/manage",
             icon: ShoppingCart,
             variant: "ghost"
           },
           {
-            title: "Settings",
+            title: "History",
+            href: "/history",
+            icon: UsersRound,
+            variant: "ghost"
+          },
+          {
+            title: "settings",
             href: "/settings",
             icon: Settings,
             variant: "ghost"
