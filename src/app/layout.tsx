@@ -25,7 +25,7 @@ export default function RootLayout({
       // INSERT THEMES HERE
         className={cn(
           "min-h-screen w-full flex bg-background text-black",
-          inter.className,
+          
           {
             "debug-screens": process.env.NODE_ENV === "development"
           }

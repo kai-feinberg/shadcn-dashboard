@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
  
-
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/IBMPlexSansDevanagari-SemiBold.ttf') format('truetype');
+  /* src: url('/Kanit-Regular.ttf') format('truetype'); */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
 
 
 @layer base {
@@ -60,5 +67,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'IBM Plex Sans', sans-serif;
   }
 }
